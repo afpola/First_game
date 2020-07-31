@@ -12,7 +12,7 @@ pygame.init()
 
 # pylint: disable=pointless-string-statement
 """
-- Every game that exists has what is called a Game Loop.
+- Every game that exists has what is called a Game Loop.,
 It's merely a concept, not some kind of special syntax or function to be called.
 - The Game Loop is where all the game events occur, update and get drawn to the screen.
 Once the initial setup and initialization of variables is out of the way,
