@@ -18,7 +18,7 @@ It's merely a concept, not some kind of special syntax or function to be called.
 Once the initial setup and initialization of variables is out of the way,
 the Game Loop begins where the program keeps looping over and over until an event
 of type QUIT occurs.
-- Game Loop begins:
+- Game Loop begins :
 """
 
 while True:
