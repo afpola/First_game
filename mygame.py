@@ -1,12 +1,12 @@
 """
 For using Pygame library and must be added before any other pygame function,
 else an initialization error may occur.
+There are a couple of additional imports (random, time) that are used in Game.py
 """
 import sys
-import random
 import pygame
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
-from pygame import time
+
 
 pygame.init()
 
