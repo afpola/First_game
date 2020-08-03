@@ -21,13 +21,6 @@ of type QUIT occurs.
 - Game Loop begins :
 """
 
-while True:
-    pygame.display.update()
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-
 
 """ Changes in the game are not implemented until the display.update() has been called.
  Since games are constantly changing values, the update function is in the game loop,
@@ -40,3 +33,25 @@ while True:
  One of the many attributes (or properties) held by EVENT OBJECTS is TYPE.
  The TYPE attribute tells us what kind of EVENT the OBJECT represents.
 """
+
+# Setting up FPS
+FPS = 60
+FRAME_PER_SEC = pygame.time.Clock()
+
+# Creating colors
+BLUE = (0, 0, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+# Other Variables for use in the program
+SCREEN_WIDTH = 400
+SCREEN_HEIGHT = 600
+SPEED = 5
+SCORE = 0
+
+# Setting up Fonts
+FONT = pygame.font.SysFont("Verdana", 60)
+FONT_SMALL = pygame.font.SysFont("Verdana", 20)
+GAME_OVER = FONT.render("Game Over", True, BLACK)
