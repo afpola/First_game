@@ -48,12 +48,6 @@ DISPLAYSURF = pygame.display.set_mode((640, 484))
 DISPLAYSURF.fill(WHITE)
 pygame.display.set_caption("Game")
 
-"""
-Ok i just wanna see what i've done so far, a background which is a pitch. So write code.
-Alright, got something. Got the white-screen. But we wanna see the pitch.
-
-Look in Game.py for when the background is used further (where it's used, not only defined)
-"""
 
 # Beginning Game Loop
 while True:
