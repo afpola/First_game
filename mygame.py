@@ -75,8 +75,10 @@ pygame.display.set_caption("Game")
 """
 Creating a class for my player
 
-
-- Future possible Task: Maybe be able to move up and down as well. Don't know.
+- Task/new issue(3): Move player class to separate file.
+Hmm have to check how the files connect, from earlier projects.
+I mean when you run. Maybe you don't have to do anything, maybe vscode recognizes regardless
+because it's within the system so to speak.
 
 """
 
@@ -108,6 +110,10 @@ class Player(pygame.sprite.Sprite):
             self.rect.move_ip(-SPEED, 0)
         if self.rect.right < SCREEN_WIDTH and pressed_keys[K_RIGHT]:
             self.rect.move_ip(SPEED, 0)
+        if self.rect.top > 0 and pressed_keys[K_UP]:
+            self.rect.move_ip(0, -SPEED)
+        if self.rect.bottom < SCREEN_HEIGHT and pressed_keys[K_DOWN]:
+            self.rect.move_ip(0, SPEED)
 
 
 # Setting up Sprites
