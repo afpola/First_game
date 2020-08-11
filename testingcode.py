@@ -41,3 +41,23 @@
 #     FramePerSec.tick(FPS)
 
 # select text, then ctrl + ' for turn text into code or turn into normal again
+
+
+# def testfunction(var_b, var_a):
+
+#     result = var_b + var_a
+
+#     return result
+
+
+# var_a = 'friend'
+# var_b = 'hello'
+
+# var_c = testfunction(var_b, var_a)
+# print(var_c)
+
+def mf():
+    print("hellosdfsdfsdfsdf")
+
+
+mf()
