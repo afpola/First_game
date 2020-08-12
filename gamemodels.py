@@ -37,23 +37,19 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         """sssss
         """
+        movement = pygame.math.Vector2()
+
         pressed_keys = pygame.key.get_pressed()
-       # if pressed_keys[K_UP]:
-        # self.rect.move_ip(0, -5)
-       # if pressed_keys[K_DOWN]:
-        # self.rect.move_ip(0,5)
 
         if self.rect.left > 0 and pressed_keys[K_LEFT]:
-            self.rect.move_ip(-SPEED, 0)
+            movement.x = movement.x - SPEED
         if self.rect.right < SCREEN_WIDTH and pressed_keys[K_RIGHT]:
-            self.rect.move_ip(SPEED, 0)
+            movement.x = movement.x + SPEED
         if self.rect.top > 0 and pressed_keys[K_UP]:
-            self.rect.move_ip(0, -SPEED)
+            movement.y = movement.y - SPEED
         if self.rect.bottom < SCREEN_HEIGHT and pressed_keys[K_DOWN]:
-            self.rect.move_ip(0, SPEED)
+            movement.y = movement.y + SPEED
 
-
-"""
-H göra funktionen så blir det bra.
-
-"""
+        if movement.length() > 0:
+            movement = movement.normalize() * SPEED
+            self.rect.move_ip(movement.x, movement.y)
