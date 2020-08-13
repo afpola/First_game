@@ -3,20 +3,14 @@
 import pygame
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
 from utility import load_image
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, SPEED
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, SPEED, GOALKEEPER_SPEED
 
 # pylint: disable=pointless-string-statement
 
 """
 Creating a class for my player
 
-- Task/new issue(3): Move player class to separate file.
-Hmm have to check how the files connect, from earlier projects.
-I mean when you run. Maybe you don't have to do anything, maybe vscode recognizes regardless
-because it's within the system so to speak.
 
-Min tolkning av svar på stackflow-fråga: Man importerar vid toppen de filer man vill ska hänga ne.
-Så i player.py importeras mygame och tvärtom osv. Men som sagt kolla i våra tidigare projekt.
 """
 
 
@@ -53,3 +47,28 @@ class Player(pygame.sprite.Sprite):
         if movement.length() > 0:
             movement = movement.normalize() * SPEED
             self.rect.move_ip(movement.x, movement.y)
+
+
+class Goalkeeper(pygame.sprite.Sprite):
+    """Creating a class for enemy/goalkeeper
+
+    Args:
+        pygame ([type]): [description]
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.image = load_image("Enemy.png")
+        self.surf = pygame.Surface((99, 126))
+        self.rect = self.surf.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 0.2))
+        self.velocity = pygame.math.Vector2(GOALKEEPER_SPEED, 0)
+
+    def update(self):
+        """sssss
+        """
+        self.rect.move_ip(self.velocity.x, self.velocity.y)
+
+        if self.rect.x > SCREEN_WIDTH or self.rect.x < 0:
+         #   self.velocity = self.velocity.reflect(-self.velocity)
+            self.velocity = -self.velocity
