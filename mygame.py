@@ -6,7 +6,7 @@ There are a couple of additional imports (random, time) that are used in Game.py
 import sys
 import pygame
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
-from gamemodels import Player
+from gamemodels import Player, Goalkeeper
 from utility import load_image
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, BLACK
 
@@ -28,13 +28,13 @@ pygame.display.set_caption("Game")
 
 # Setting up Sprites
 P1 = Player()
-# E1 = Enemy()
+E1 = Goalkeeper()
 
 # Creating Sprites Groups
 # enemies = pygame.sprite.Group()
 # enemies.add(E1)
 ALL_SPRITES = pygame.sprite.Group()
-ALL_SPRITES.add(P1)
+ALL_SPRITES.add(P1, E1)
 # all_sprites.add(E1)
 
 
