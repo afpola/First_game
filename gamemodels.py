@@ -69,6 +69,6 @@ class Goalkeeper(pygame.sprite.Sprite):
         """
         self.rect.move_ip(self.velocity.x, self.velocity.y)
 
-        if self.rect.x > SCREEN_WIDTH or self.rect.x < 0:
+        if self.rect.x > SCREEN_WIDTH * 0.85 or self.rect.x < 0:
          #   self.velocity = self.velocity.reflect(-self.velocity)
             self.velocity = -self.velocity
