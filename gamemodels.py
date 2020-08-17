@@ -3,8 +3,8 @@
 import pygame
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
 from utility import load_image
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, SPEED, GOALKEEPER_SPEED
-
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, SPEED, GOALKEEPER_SPEED  # , RED
+#from mygame import DISPLAYSURF
 # pylint: disable=pointless-string-statement
 
 """
@@ -72,3 +72,18 @@ class Goalkeeper(pygame.sprite.Sprite):
         if self.rect.x > SCREEN_WIDTH * 0.85 or self.rect.x < 0:
          #   self.velocity = self.velocity.reflect(-self.velocity)
             self.velocity = -self.velocity
+
+
+class Ball(pygame.sprite.Sprite):
+    """Creating a class for ball
+
+    Args:
+        pygame ([type]): [description]
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.image = load_image("Ball.png")
+        self.surf = pygame.Surface((50, 50))
+        self.rect = self.surf.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
