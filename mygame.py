@@ -66,6 +66,10 @@ while True:
 
     if sprite.spritecollide(E1, BALL_GROUP, False):
         B1.velocity = pygame.Vector2(0, 0)
+
+        B1.rect = B1.surf.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+
         print("Save")
 
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
