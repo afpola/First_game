@@ -76,9 +76,6 @@ class Goalkeeper(pygame.sprite.Sprite):
 
 class Ball(pygame.sprite.Sprite):
     """Creating a class for ball
-
-    Args:
-        pygame ([type]): [description]
     """
 
     def __init__(self):
@@ -87,3 +84,9 @@ class Ball(pygame.sprite.Sprite):
         self.surf = pygame.Surface((50, 50))
         self.rect = self.surf.get_rect(
             center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+        self.velocity = pygame.math.Vector2(0, 0)
+
+    def update(self):
+        """Move the ball sprite with the balls current velocity.
+        """
+        self.rect.move_ip(self.velocity.x, self.velocity.y)
