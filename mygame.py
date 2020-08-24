@@ -32,6 +32,7 @@ P1 = Player()
 E1 = Goalkeeper()
 B1 = Ball()
 
+
 # Creating Sprites Groups
 # enemies = pygame.sprite.Group()
 # enemies.add(E1)
@@ -51,7 +52,7 @@ while True:
             sys.exit()
 
     if sprite.spritecollide(P1, BALL_GROUP, False):
-        print("Test successful")
+        B1.velocity = pygame.Vector2(0, -1)
 
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
 
