@@ -54,6 +54,18 @@ while True:
     if sprite.spritecollide(P1, BALL_GROUP, False):
         B1.velocity = pygame.Vector2(0, -1)
 
+    if B1.rect.y < 0:
+        B1.velocity = pygame.Vector2(0, 0)
+        print("Goal")
+
+    if sprite.spritecollide(E1, BALL_GROUP, False):
+        B1.velocity = pygame.Vector2(0, 0)
+        print("Save")
+
+    if B1.rect.y < 0:
+        B1.rect = B1.surf.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
 
 # Moves and Re-draws all Sprites
