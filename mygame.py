@@ -64,11 +64,13 @@ while True:
         B1.rect = B1.surf.get_rect(
             center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
-    if sprite.spritecollide(E1, BALL_GROUP, False):
-        B1.velocity = pygame.Vector2(0, 0)
-
+    if B1.rect.y > SCREEN_HEIGHT:
         B1.rect = B1.surf.get_rect(
             center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+        B1.velocity = pygame.Vector2(0, 0)
+
+    if sprite.spritecollide(E1, BALL_GROUP, False):
+        B1.velocity = pygame.Vector2(0, 1)
 
         print("Save")
 
