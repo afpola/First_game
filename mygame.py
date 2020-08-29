@@ -5,11 +5,12 @@ There are a couple of additional imports (random, time) that are used in Game.py
 """
 import sys
 import pygame
-from pygame import sprite, display, time, font, event
+from pygame import sprite, display, time, font, event, rect
+from pygame.math import Vector2
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
 from gamemodels import Player, Goalkeeper, Ball
-from utility import load_image
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, BLACK
+from utility import load_image, position_from_center
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, BLACK, BALL_SPEED
 
 pygame.init()
 
@@ -27,6 +28,7 @@ DISPLAYSURF = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 DISPLAYSURF.fill(WHITE)
 display.set_caption("Game")
 
+
 # Setting up Sprites
 P1 = Player()
 E1 = Goalkeeper()
@@ -40,6 +42,8 @@ ALL_SPRITES = sprite.Group()
 ALL_SPRITES.add(P1, E1, B1)
 BALL_GROUP = sprite.Group()
 BALL_GROUP.add(B1)
+GOALKEEPER_GROUP = sprite.Group()
+GOALKEEPER_GROUP.add(E1)
 # all_sprites.add(E1)
 
 
@@ -51,18 +55,33 @@ while True:
             pygame.quit()
             sys.exit()
 
+    # Sprite collide function:
+
     if sprite.spritecollide(P1, BALL_GROUP, False):
-        B1.velocity = pygame.Vector2(0, -1)
+
+        # So this makes the ball go way too fast. Why is this?
+
+        B1.velocity.x = (B1.rect.centerx - P1.rect.centerx)
+        B1.velocity.y = (B1.rect.centery - P1.rect.centery)
+
+        # Trying to correct, ball stops moving after 1 frame instead:
+
+        B1.velocity = B1.velocity.normalize() * 3
+
+        # Now it works fine when multiplying w numbers > 2.
+
+        # So it didn't move 1 frame, but why did it stop moving before?
 
     if B1.rect.y < 0:
         B1.velocity = pygame.Vector2(0, 0)
         print("Goal")
 
-        P1.rect = P1.surf.get_rect(
-            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 0.8))
+        P1.reset()
 
-        B1.rect = B1.surf.get_rect(
-            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+        position_from_center(B1.rect, 0, 0)
+
+        # B1.rect = B1.surf.get_rect(
+        #     center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
     if B1.rect.y > SCREEN_HEIGHT:
         B1.rect = B1.surf.get_rect(
@@ -73,6 +92,9 @@ while True:
         B1.velocity = pygame.Vector2(0, 1)
 
         print("Save")
+
+#    if B1.rect.y > (P1.rect.y - 20) and P1.rect.x == SCREEN_WIDTH / 2:
+#        B1.velocity = pygame.Vector2(0, -2)
 
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
 
