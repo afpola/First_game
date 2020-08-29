@@ -59,16 +59,13 @@ while True:
 
     if sprite.spritecollide(P1, BALL_GROUP, False):
 
-        # So this makes the ball go way too fast. Why is this?
-
         B1.velocity.x = (B1.rect.centerx - P1.rect.centerx)
         B1.velocity.y = (B1.rect.centery - P1.rect.centery)
 
-        # Trying to correct, ball stops moving after 1 frame instead:
-
-        B1.velocity = B1.velocity.normalize() * 3
+        B1.velocity = B1.velocity.normalize() * BALL_SPEED
 
         # Now it works fine when multiplying w numbers > 2.
+        # * 1 makes it the same of course, which was the set speed earlier.
 
         # So it didn't move 1 frame, but why did it stop moving before?
 
