@@ -85,12 +85,6 @@ while True:
     if B1.rect.y > SCREEN_HEIGHT:
         B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
-    # Uh now rect.y > screen height applies to bottom as well in the game
-    # (says goal when you hit it bottom & resets)
-    # Reflect doesn't work yet with y. Can't remember if it ever worked
-    # But anyway, doesn't work now.
-    # Why the hell does > screen height mean outside of y axel?
-
     if B1.rect.x > SCREEN_WIDTH:
         B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
 
@@ -101,9 +95,6 @@ while True:
         B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
         print("Save")
-
-#    if B1.rect.y > (P1.rect.y - 20) and P1.rect.x == SCREEN_WIDTH / 2:
-#        B1.velocity = pygame.Vector2(0, -2)
 
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
 
