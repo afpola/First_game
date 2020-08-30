@@ -64,7 +64,7 @@ while True:
 
         B1.velocity = B1.velocity.normalize() * BALL_SPEED
 
-        # Now it works fine when multiplying w numbers > 2.
+        # Now it works fine when multiplying w numbers > 1.
         # * 1 makes it the same of course, which was the set speed earlier.
 
         # So it didn't move 1 frame, but why did it stop moving before?
@@ -80,13 +80,25 @@ while True:
         # B1.rect = B1.surf.get_rect(
         #     center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
+        print("Goal")
+
     if B1.rect.y > SCREEN_HEIGHT:
-        B1.rect = B1.surf.get_rect(
-            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-        B1.velocity = pygame.Vector2(0, 0)
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
+
+    # Uh now rect.y > screen height applies to bottom as well in the game
+    # (says goal when you hit it bottom & resets)
+    # Reflect doesn't work yet with y. Can't remember if it ever worked
+    # But anyway, doesn't work now.
+    # Why the hell does > screen height mean outside of y axel?
+
+    if B1.rect.x > SCREEN_WIDTH:
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
+
+    if B1.rect.x < 0:
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
 
     if sprite.spritecollide(E1, BALL_GROUP, False):
-        B1.velocity = pygame.Vector2(0, 1)
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
         print("Save")
 
