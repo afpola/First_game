@@ -54,7 +54,7 @@ while True:
             pygame.quit()
             sys.exit()
 
-    # Sprite collide function:
+    # Sprite collide functions, player ball:
 
     if sprite.spritecollide(P1, BALL_GROUP, False):
 
@@ -68,9 +68,10 @@ while True:
 
         # So it didn't move 1 frame, but why did it stop moving before?
 
+# Goal:
+
     if B1.rect.y < 0:
         B1.velocity = pygame.Vector2(0, 0)
-        print("Goal")
 
         P1.reset()
 
@@ -81,19 +82,29 @@ while True:
 
         print("Goal")
 
+# Wall collisons:
+
     if B1.rect.y > SCREEN_HEIGHT:
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 2))
 
     if B1.rect.x > SCREEN_WIDTH:
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(2, 0))
 
     if B1.rect.x < 0:
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(2, 0))
+
+# Goalkeeper collision:
 
     if sprite.spritecollide(E1, BALL_GROUP, False):
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
+        B1.velocity.x = (B1.rect.centerx - E1.rect.centerx)
+        B1.velocity.y = (B1.rect.centery - E1.rect.centery)
+
+        B1.velocity = B1.velocity.normalize() * BALL_SPEED
         print("Save")
+
+    # Earlier:
+    #B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
 
