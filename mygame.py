@@ -5,8 +5,7 @@ There are a couple of additional imports (random, time) that are used in Game.py
 """
 import sys
 import pygame
-from pygame import sprite, display, time, font, event, rect
-from pygame.math import Vector2
+from pygame import sprite, display, time, font, event
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
 from gamemodels import Player, Goalkeeper, Ball
 from utility import load_image, position_from_center
