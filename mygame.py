@@ -9,7 +9,7 @@ from pygame import sprite, display, time, font, event
 from pygame.locals import *  # pylint: disable=wildcard-import, unused-wildcard-import
 from gamemodels import Player, Goalkeeper, Ball
 from utility import load_image, position_from_center
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, BLACK, BALL_SPEED
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH, WHITE, BLACK, BALL_SPEED, SCORE, counter
 
 pygame.init()
 
@@ -76,14 +76,23 @@ while True:
         # B1.rect = B1.surf.get_rect(
         #     center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
-        print("Goal")
+        # Trying to add counter for goals. It adds but i think it resets after every goal to 0.
+        # Fixed it! counter var can't be in this function.
+
+        def increment():
+            counter[0] += 1
+
+        increment()
+        print("GOAL! Goals scored:", counter[0])
 
 # Wall collisons:
+# (Problem: Ball doesn't follow (0, 1) just keeps the current speed.)
+# Probably needs a more advanced solution for this.
 
-    if B1.rect.y > SCREEN_HEIGHT:
+    if B1.rect.y > SCREEN_HEIGHT - 50:
         B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
-    if B1.rect.x > SCREEN_WIDTH:
+    if B1.rect.x > SCREEN_WIDTH - 50:
         B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
 
     if B1.rect.x < 0:
