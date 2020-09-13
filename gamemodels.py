@@ -95,3 +95,5 @@ class Ball(pygame.sprite.Sprite):
         """Move the ball sprite with the balls current velocity.
         """
         self.rect.move_ip(self.velocity.x, self.velocity.y)
+
+# Add function to make ball speed decrease by time

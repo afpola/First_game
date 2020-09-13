@@ -63,10 +63,6 @@ while True:
 
         B1.velocity = B1.velocity.normalize() * BALL_SPEED
 
-        # Now it works fine when multiplying w numbers > 1.
-        # * 1 makes it the same of course, which was the set speed earlier.
-
-        # So it didn't move 1 frame, but why did it stop moving before?
 
 # Goal:
 
@@ -85,13 +81,13 @@ while True:
 # Wall collisons:
 
     if B1.rect.y > SCREEN_HEIGHT:
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 2))
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
     if B1.rect.x > SCREEN_WIDTH:
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(2, 0))
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
 
     if B1.rect.x < 0:
-        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(2, 0))
+        B1.velocity = B1.velocity.reflect(pygame.math.Vector2(1, 0))
 
 # Goalkeeper collision:
 
@@ -100,11 +96,11 @@ while True:
         B1.velocity.x = (B1.rect.centerx - E1.rect.centerx)
         B1.velocity.y = (B1.rect.centery - E1.rect.centery)
 
-        B1.velocity = B1.velocity.normalize() * BALL_SPEED
+        B1.velocity = B1.velocity.normalize() * BALL_SPEED / 2
         print("Save")
 
     # Earlier:
-    #B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
+    # B1.velocity = B1.velocity.reflect(pygame.math.Vector2(0, 1))
 
     DISPLAYSURF.blit(BACKGROUND, (0, 0))
 
