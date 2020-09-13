@@ -20,3 +20,4 @@ SPEED = 5
 SCORE = 0
 GOALKEEPER_SPEED = 2
 BALL_SPEED = 3
+counter = [0]
